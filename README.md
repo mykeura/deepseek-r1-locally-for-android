@@ -94,7 +94,7 @@ _What is ollama? Ollama is an artificial intelligence model server that allows y
 Now that you have installed ollama. You need to start your server, run:
 
 ```bash
-ollama server &
+ollama serve &
 ```
 
 _If you fail to start the server with this command. Try without the ampersand “&”._
