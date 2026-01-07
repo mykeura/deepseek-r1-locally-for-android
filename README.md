@@ -1,6 +1,13 @@
-# DeepSeek-r1 installation guide for Android 🐋
+# DeepSeek-r1 Installation Guide for Android 🐋
 
-![Deepseek R1](/images/deepseek-ai.webp)
+```
+    ____                                 __      ____ ___
+   / __ \___  ___  ____  ________  ___  / /__   / __ <  /
+  / / / / _ \/ _ \/ __ \/ ___/ _ \/ _ \/ //_/  / /_/ / /
+ / /_/ /  __/  __/ /_/ (__  )  __/  __/ ,<    / _, _/ /
+/_____/\___/\___/ .___/____/\___/\___/_/|_|  /_/ |_/_/
+               /_/
+```
 
 Welcome to the Deepseek R1 model installation guide on Android devices.
 

@@ -4,15 +4,13 @@
 # | Name: Install Deepseek R1
 # | Author: Miguel Euraque
 # | Date: 2025-01-30
+# | Version: 1.0.1
 # | Description: Automated installation script for Deepseek R1 on Android
 # | Copyright: MIT License.
 # ===============================================
 
 # Update Termux
 pkg update -y
-
-# Install additional tools
-pkg install -y neofetch fish
 
 # Install proot-distro
 pkg install -y proot-distro
@@ -22,6 +20,7 @@ yes | proot-distro install archlinux
 
 # Enter Arch Linux and execute configuration
 proot-distro login archlinux << 'EOF'
+
 # Update Arch Linux packages
 pacman -Syu --noconfirm
 
