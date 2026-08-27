@@ -1,4 +1,4 @@
-# DeepSeek-r1 Installation Guide for Android 🐋
+# DeepSeek R1 Installation Guide for Android
 
 ```
     ____                                 __      ____ ___
@@ -9,215 +9,150 @@
                /_/
 ```
 
-Welcome to the Deepseek R1 model installation guide on Android devices.
+Welcome to this guide for installing and running the DeepSeek R1 artificial intelligence model on an Android device. Throughout this document you will find detailed instructions to get it up and running using Termux and Arch Linux, so that by the end you can run the model locally on your device, without depending on an internet connection and keeping full control of the whole process.
 
-This document will provide you with detailed instructions for installing and running the Deepseek R1 artificial intelligence model using Termux and Arch Linux. 
-
-So by following this guide you will have the ability to run this fascinating model on your device locally, which will also allow you to use it without an internet connection.
+If you would rather skip the manual installation, at the end of this document I explain how to use my automated installation script, which takes care of every step for you.
 
 ## Prerequisites
 
-Before starting with the installation, make sure you have Termux installed on your device. This is an Android application that provides a Linux-based terminal environment.
+Before you begin, you need to have the Termux app installed, as it provides a Linux-based terminal environment inside Android. My recommendation is to download it from the F-Droid store, since the version available there is more up to date than the ones from other sources.
 
-My recommendation is that you download it from the F-Droid store, as a more advanced version can be accessed from the F-Droid store.
+## 1. Steps to install DeepSeek R1 on Android 📱
 
-## 1. Deepseek R1 installation steps on Android 📱
+With Termux installed, follow the steps below to get DeepSeek R1 running on your device.
 
-After installing Termux, you should follow the steps below to install Deepseek R1 on your Android device having full control of the whole process.
+### 1.1. Upgrade the Termux packages
 
-But if you want to perform the installation in automatic. I invite you to read how to use my installation script which I talk about almost at the end of the document.
-
-### 1.1. Upgrade packages in Termux
-
-To ensure that you have the latest versions of packages, run the following command in Termux:
+To make sure you are working with the latest package versions, run the following command in Termux:
 
 ```bash
 pkg update
 ```
 
-### 1.2. Accessing mobile files from Termux
+### 1.2. Access your device's files from Termux
 
-To allow Termux to access files on your device, run:
+If you want Termux to read and write files on your device, run:
 
 ```bash
 termux-setup-storage
 ```
 
-_Note that this is an optional step. So if you do not want to access your files from Termux, you can skip this step._
+This step is optional: if you do not need to access your files from the terminal, you can skip it and continue with the installation.
 
 ### 1.3. Install Proot Distro
 
-Now we need to install Proot Distro on Termux. 
+Now install Proot Distro, a tool that lets you run Linux distributions on Android through Proot:
 
 ```bash
 pkg install proot-distro
 ```
 
-_Which is a tool that allows you to run Linux distributions on Android using Proot._
+### 1.4. Install Arch Linux on Android
 
-### 1.4. Install Arch Linux on Adnroid
-
-Through this command proot will install a version optimized for your processing, run:
+The next command downloads and installs a version of Arch Linux optimized for your processor's architecture, whether 32-bit or 64-bit ARM, the one used by most smartphones and tablets:
 
 ```bash
 proot-distro install archlinux
 ```
 
-_ARM is a 32-bit and 64-bit processor architecture used in mobile devices such as smartphones and tablets._
+### 1.5. Log into Arch Linux as root
 
-### 1.5. Logging into Arch Linux as root
-
-To log in as root to Arch Linux, use the following command:
+To install Ollama and the AI models you need superuser privileges, so log into Arch Linux as root with:
 
 ```bash
 proot-distro login archlinux
 ```
 
-_To install ollama and the artificial intelligence models on the mobile you need to be root._
+### 1.6. Upgrade the Arch Linux packages
 
-### 1.6. Upgrading Arch Linux packages
-
-To make sure you have the latest versions of Arch Linux packages, run:
+Verify that your Arch Linux packages are up to date by running:
 
 ```bash
 pacman -Syu
 ```
 
-_In this case we do not use “sudo” as we are already superuser._
+Notice that we do not use `sudo` here, because we are already logged in as the superuser.
 
-### 1.7. Installing Ollama on Arch Linux
+### 1.7. Install Ollama on Arch Linux
 
-Ollama will be the means through which we will obtain the Deepseek R1 model image. So to install it, run:
+Ollama will be the means through which we obtain the DeepSeek R1 model image. It is an AI model server that lets you download and run models without an internet connection. Install it with:
 
 ```bash
 curl -fsSL https://ollama.com/install.sh | sh
 ```
 
-_What is ollama? Ollama is an artificial intelligence model server that allows you to download and run AI models without an Internet connection._
+### 1.8. Start the Ollama server
 
-### 1.8. Starting the Ollama Server
-
-Now that you have installed ollama. You need to start your server, run:
+With Ollama installed, start its server:
 
 ```bash
 ollama serve &
 ```
 
-_If you fail to start the server with this command. Try without the ampersand “&”._
+If the server fails to start with that command, try again without the ampersand `&`.
 
-### 1.9. Installing and running Deepseek R1
+### 1.9. Install and run DeepSeek R1
 
-Finally, let's install and run the Deepseek R1 model with the following command:
+Finally, install and run the model with:
 
 ```bash
 ollama run deepseek-r1:1.5b
 ```
 
-_After a few seconds the model will have loaded and you will be able to start chatting with it._
+After a few seconds, once the model has been downloaded and loaded, you can start chatting with it.
 
-## 2. Automated Installation 🚀
+## 2. Automated installation
 
-> **Important:** To perform the automated installation, your phone must be rooted.
+> **Important:** to perform the automated installation, your phone must be rooted.
 
-To make the installation process simpler, I have created a script that automates all the steps. Follow these steps to download the script from GitHub and run it:
+If you prefer to save yourself the manual steps, I created a script that automates the whole process with the same functionality as the installation described above: it updates Termux, installs the required tools, sets up Arch Linux, installs and starts Ollama, and launches the DeepSeek R1 model.
 
-### 2.1. Install Git
-
-First, you need to install Git to clone the repository. Run the following command in Termux:
+First install Git in Termux so you can clone the repository:
 
 ```bash
 pkg install git
 ```
 
-### 2.2. Clone the Repository
-
-Next, clone the repository containing the installation script:
+Then clone the repository and enter the script's directory:
 
 ```bash
 git clone https://github.com/mykeura/deepseek-r1-locally-for-android.git
-```
-
-### 2.3. Navigate to the Script Directory
-
-Change to the directory where the script is located:
-
-```bash
 cd deepseek-r1-locally-for-android
 ```
 
-### 2.4. Install tsu
-
-To use the `sudo` command, you need to install `tsu`:
+Since the script needs superuser privileges, install `tsu` to get the `sudo` command:
 
 ```bash
 pkg install tsu
 ```
 
-### 2.5. Run the Installation Script
-
-Make the script executable and run it with `sudo`:
+Finally, make the script executable and run it with `sudo`:
 
 ```bash
 chmod +x install-deepseek.sh
 sudo ./install-deepseek.sh
 ```
 
-The script will take care of:
-- Updating Termux.
-- Installing the necessary tools.
-- Configuring Arch Linux.
-- Installing and running Ollama.
-- Starting the Deepseek R1 model.
+This option is ideal if you are looking for a quick, hassle-free installation: the script takes care of the entire process from start to finish.
 
-This option is perfect if you prefer a quick and hassle-free installation. The script will perform the entire process automatically, maintaining the same functionality as the manual installation.
+## How to use DeepSeek R1 once installed
 
-Make the script executable and run it:
+The next time you open Termux, you will need to log into Arch Linux and start the Ollama server before running the model. First enter Arch Linux, then start the server, and finally launch the model:
 
-```bash
-chmod +x install-deepseek.sh
-./install-deepseek.sh
-```
-
-The script will take care of:
-- Updating Termux.
-- Installing the necessary tools.
-- Configuring Arch Linux.
-- Installing and running Ollama.
-- Starting the Deepseek R1 model.
-
-This option is perfect if you prefer a quick and hassle-free installation. The script will perform the entire process automatically, maintaining the same functionality as the manual installation.
-
-## How to use Deepseek R1 once installed
-
-The next time you start Termux, you will need to log into Arch Linux and start the Ollama server before running the model. Follow these steps:
-
-1. Log in to Arch Linux:
 ```bash
 proot-distro login archlinux
-```
-
-2. Start the Ollama server:
-```bash
 ollama serve &
-```
-
-3. Run the Deepseek R1 model
-```bash
 ollama run deepseek-r1:1.5b
 ```
 
-With these simple steps you will have access to a powerful artificial intelligence model locally and without the need of an internet connection.
+With these simple steps you will have access to a powerful artificial intelligence model running locally and without the need for an internet connection.
 
 ## Why choose the 1.5b-parameter model?
 
-The 1.5b parameter model has been chosen because of its balance between performance and efficiency.
+The 1.5b-parameter model was chosen for its balance between performance and efficiency: it delivers accurate and fast results, and its size allows it to run on resource-constrained devices such as a mobile phone.
 
-This model is capable of delivering accurate and fast results, while its size allows it to run on resource-constrained devices such as a mobile device.
+Keep in mind that the final performance will depend on your device's specifications: the more RAM and the better the processor, the better the performance you will get.
 
-It should be added that the performance of the model will depend on the specifications of your device. So devices with more RAM and processor will provide better performance.
+## Conclusion on installing DeepSeek R1 on Android
 
-## Conclusion on installing Deepseek R1 on Android.
-
-By way of conclusion, I can say that I love running Deepseek R1 locally using my favorite Gnu/Linux distribution.
-
-And while the experience would not be as smooth as using it from the android app or its website. It's nice to be able to have this open source model, without the need to be connected to the internet.
+As a closing note, I must confess that I love running DeepSeek R1 locally using my favorite GNU/Linux distribution. And while the experience is not as smooth as using it from the Android app or its website, it is really nice to have this open source model available without needing to be connected to the internet.

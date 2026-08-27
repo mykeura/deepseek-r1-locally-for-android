@@ -1,13 +1,9 @@
 #!/bin/bash
 
-# ===============================================
-# | Name: Install Deepseek R1
-# | Author: Miguel Euraque
-# | Date: 2025-01-30
-# | Version: 1.0.1
-# | Description: Automated installation script for Deepseek R1 on Android
-# | Copyright: MIT License.
-# ===============================================
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2025 Miguel Euraque (mykeura)
+# @version 1.0.2
+# @description Automated installation script for Deepseek R1 on Android
 
 # Update Termux
 pkg update -y
